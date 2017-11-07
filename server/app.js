@@ -3,8 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
-dbLink = 'mongodb://localhost/blog'
-// mongoose.connect('mongodb://localhost/blog')
+dbLink = 'mongodb://dimasgardenia:dimas1990@cluster0-shard-00-00-axjli.mongodb.net:27017,cluster0-shard-00-01-axjli.mongodb.net:27017,cluster0-shard-00-02-axjli.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 
 mongoose.connect(dbLink)
 

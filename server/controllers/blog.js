@@ -4,7 +4,8 @@ let blogCreate = (req,res)=>{
   Blog.create({
     author : req.body.author,
     title : req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    image: req.body.image
   },function(err,result){
     if(!err){
       res.send(result)
@@ -28,7 +29,8 @@ let blogEdit = (req,res)=>{
   Blog.updateOne({_id:req.params.id},{
     author : req.body.author,
     title : req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    image: req.body.image
   },function(err,result){
     if(!err){
       res.send(result)
@@ -48,9 +50,20 @@ let blogDelete = (req,res)=>{
   })
 }
 
+let blogFindById = (req, res) => {
+  Blog.findById({_id: req.params.id}, function (err, result) {
+    if (!err) {
+      res.send(result)
+    } else {
+      res.send(err)
+    }
+  })
+}
+
 module.exports = {
   blogCreate,
   blogView,
   blogEdit,
-  blogDelete
+  blogDelete,
+  blogFindById
 }

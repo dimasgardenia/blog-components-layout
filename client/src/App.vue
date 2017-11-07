@@ -1,23 +1,52 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <navbar></navbar>
+    <div class="container">
+      <div class="col-md-4">
+        <sidebar :articles='articles'></sidebar>
+      </div>
+      <div class="col-md-6">
+        <router-view  @tambahdata='postdata'/>
+      </div>
+    </div>
+    <penutup></penutup>
   </div>
 </template>
 
 <script>
+import navbar from '@/components/navbar'
+import sidebar from '@/components/sidebar'
+import penutup from '@/components/penutup'
+
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      articles: []
+    }
+  },
+  methods: {
+    getAllArticle: function () {
+      this.$http.get('/')
+      .then(({data}) => {
+        // console.log(articles)
+        this.articles = data
+      })
+    },
+    postdata (data) {
+      this.articles.push(data)
+    }
+  },
+  mounted () {
+    this.getAllArticle()
+  },
+  components: {
+    navbar,
+    sidebar,
+    penutup
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

@@ -5,6 +5,7 @@ let BlogSchema = new Schema({
   author: String,
   title: String,
   content: String,
+  image: String
 })
 
 var Blogs = mongoose.model('Blogs', BlogSchema)
