@@ -25,6 +25,7 @@ export default {
       .then(({data}) => {
         console.log(data)
         this.$emit('tambahdata', data)
+        this.bucket = {}
       })
       .catch(err => {
         console.log(err)
